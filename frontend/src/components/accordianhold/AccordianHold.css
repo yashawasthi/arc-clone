@@ -1,0 +1,7 @@
+body{
+    background-color: aliceblue;
+}
+.main ul{
+    list-style: none;
+    margin: 15px;
+}

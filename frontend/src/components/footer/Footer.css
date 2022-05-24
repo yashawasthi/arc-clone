@@ -1,0 +1,13 @@
+
+.footer{
+    background-color:black;
+    position :relative;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    color: white;
+}
+.footer li{
+    list-style: none;
+    margin-bottom: 8px;
+}

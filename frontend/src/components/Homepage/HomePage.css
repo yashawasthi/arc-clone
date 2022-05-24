@@ -1,0 +1,32 @@
+.home-page{
+    background-color:rgb(221, 251, 251)
+}
+.first{
+    background-image: url("/Users/yashawasthi/Desktop/task-one/frontend/public/electro.jpg");
+    background-attachment:scroll;
+    background-position: center;
+    height: 700px;
+    width: 100%;
+    text-align:center;
+}
+.text{
+    position: relative;
+    top:100px;
+    right: 20px;
+    color: white;
+}
+h1{
+    margin: 0;
+}
+.btn{
+    position: relative;
+    top:400px;
+    left: 30px;
+}
+.centered-data
+{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+}
