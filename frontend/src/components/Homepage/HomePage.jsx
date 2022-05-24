@@ -1,10 +1,156 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./HomePage.css"
-import {Button, Grid, Paper} from "@mui/material"
+import {Button, Grid, Menu, MenuList, Paper, Typography} from "@mui/material"
 import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import AccordianHold from '../accordianhold/AccordianHold';
+import Footer from "../footer/Footer"
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const HomePage = () => {
+  const [anchorEl,setAnchorEl]= useState(null);
+  const [anchorElTwo,setAnchorElTwo]= useState(null);
+
+  const handleOpenMenu=e=>{
+    setAnchorEl(e.currentTarget);
+  }
+  const handleMenuClose=()=>{
+    setAnchorEl(null);
+  }
+
+
+
+  const handleOpenMenuTwo=e=>{
+    setAnchorElTwo(e.currentTarget);
+  }
+  const handleMenuCloseTwo=()=>{
+    setAnchorElTwo(null);
+  }
+
+
+
+
+
+
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = (value) => {
+      setOpen(false);
+    };
+
+
   return (
     <div className='home-page'>
+
+<div className='nav'>
+      <div className='title'>arc()</div>
+
+
+      <Menu id='menu' anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
+      onClose={handleMenuClose}
+      onClick={handleMenuClose}
+      > 
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>How Arc Works</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Remote Jobs</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Remote Companies</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Resume Builder</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Resources</MenuList>
+      </Menu>
+
+
+
+
+
+      <Menu id='menu2' anchorEl={anchorElTwo}
+      open={Boolean(anchorElTwo)}
+      onClose={handleMenuCloseTwo}
+      onClick={handleMenuCloseTwo }
+      > 
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Why Choose Arc</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>How we vet Developers</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Top Developers</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Our Clients</MenuList>
+        <MenuList style={{
+          fontSize:"20px",
+        padding: "10px 80px"}}>Resources</MenuList>
+      </Menu>
+      <div className='dev'><Button 
+      aria-controls='menu'
+      onClick={handleOpenMenu}
+      style={{
+          borderRadius: 5,
+          border: "white bold 1px",
+          backgroundColor: "black",
+          padding: "5px 5px",
+          fontSize: "15px",
+          color:"white"
+      }}>For developers<ArrowDropDownIcon /></Button></div>
+
+
+      <div className='comp'><Button
+      aria-controls='menu2'
+      onClick={handleOpenMenuTwo}
+      style={{
+        borderRadius: 5,
+        border: "white bold 1px",
+        backgroundColor: "black",
+        padding: "5px 5px",
+        fontSize: "15px",
+        color:"white"
+    }}
+      >For companies<ArrowDropDownIcon /></Button></div>
+        <div className='login'><Button
+        style={{
+          borderRadius: 5,
+          border: "white bold 1px",
+          backgroundColor: "black",
+          padding: "5px 5px",
+          fontSize: "15px",
+          color:"white",
+      }}
+        >Log In</Button></div>
+
+        <div className='signup'><Button
+        aria-controls='signup'
+        onClick={handleClickOpen}
+        style={{
+          borderRadius: 5,
+          border: "white bold 1px",
+          backgroundColor: "black",
+          padding: "5px 5px",
+          fontSize: "15px",
+          color:"white"
+      }}>Sign Up</Button></div>
+    </div>
+
+
+
+
+
+
+
     <div className='first'>
       <div className='text'>
         <h1>Radically different <span style={{backgroundClip: "text",
@@ -147,6 +293,78 @@ const HomePage = () => {
 
 
     </div>
+        {open?
+           <div className='appearing-item-a' id="signup">
+             <div className="main-apearing-a">
+        <Paper style={{
+            padding:"100px"
+        }}>
+            <Grid container>
+                <Grid lg="6">
+                    <Typography variant="h5">
+                    Effortlessly hire top remote developers
+                    </Typography>
+                    <ul>
+                        <li>Hire in 72 hours (freelance) and 14 days (permanent).</li>
+                        <li>Only 2.3% pass our technical & behavioral assessments.</li>
+                    </ul>
+                </Grid>
+                <Grid lg="6">
+                    <div style={{
+                      textAlign:"center"
+                    }}>
+                    <CloseIcon onClick={handleClose} style={{
+                      position:"relative",
+                      top:"-75px",
+                      left:"62%",
+                      color:"black"
+                    }} />
+                    <Typography variant="subtitle1">
+                    Sign up as a developer or company
+                    </Typography>
+                    <br></br>
+                    <Button variant="outlined"
+                    style={{
+                      padding:"20px",
+                        display:"inline"
+                    }}>
+                        I am a developer
+                        <Typography variant="subtitle2"
+                        >looking for work</Typography>
+                    </Button>
+
+
+                        <Button variant="outlined"
+                        style={{
+                          padding:"20px",
+                            display:"inline",
+                        }}>
+                        I am a company
+                        <Typography variant="subtitle2" >hiring developers</Typography>
+                        </Button>
+                      <Button
+                      style={{
+                        backgroundColor:"blue",
+                        padding:"10px",
+                        width:"80%",
+                        color:"white",
+                        marginTop:"9px"
+                      }}
+                      >
+                        SignUp with Email
+                      </Button>
+
+                    </div>
+
+                </Grid>
+            </Grid>
+        </Paper>
+        </div>
+        </div>
+        :null}
+
+    <AccordianHold />
+    <Footer />
     </div>
   )
 }
