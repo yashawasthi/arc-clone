@@ -399,13 +399,16 @@ const HomePage = () => {
         }}>
             <Grid container>
                 <Grid lg="6">
-                    <Typography variant="h5">
+                    <Typography variant="h4">
                     Effortlessly hire top remote developers
                     </Typography>
+                    <Typography variant="h6" >
                     <ul>
                         <li>Hire in 72 hours (freelance) and 14 days (permanent).</li>
                         <li>Only 2.3% pass our technical & behavioral assessments.</li>
                     </ul>
+                    </Typography>
+                    
                 </Grid>
                 <Grid lg="6">
                     <div style={{
@@ -417,13 +420,14 @@ const HomePage = () => {
                       left:"62%",
                       color:"black"
                     }} />
-                    <Typography variant="subtitle1">
+                    <Typography variant="h5">
                     Sign up as a developer or company
                     </Typography>
                     <br></br>
-                    <Button variant="outlined"
+                    <Button variant="outlined" color="secondary"
                     onClick={handleClickSetIsDeveloper}
                     style={{
+                      margin:"5px",
                       padding:"20px",
                         display:"inline"
                     }}>
@@ -433,9 +437,10 @@ const HomePage = () => {
                     </Button>
 
 
-                        <Button variant="outlined"
+                        <Button variant="outlined" color="secondary"
                         onClick={handleClickSetIsCompany}
                         style={{
+                          margin:"5px",
                           padding:"20px",
                             display:"inline",
                         }}>
@@ -460,15 +465,20 @@ const HomePage = () => {
             padding:"100px"
         }}>
             <Grid container>
-                <Grid lg="6">
-                    <Typography variant="h5">
+                <Grid lg="6" style={{
+                  textAlign:"center"
+                }}>
+                    <Typography variant="h4">
                     Join Arc to get access to
-                    </Typography>
+                    </Typography >
+                    <Typography variant="h6">
                     <ul>
                         <li>No job applications. Speak directly to hiring managers.</li>
                         <li>Receive multiple offers from companies in 2 weeks.</li>
                         <li>Work and earn your way.</li>
                     </ul>
+                    </Typography>
+                    
                 </Grid>
                 <Grid lg="6">
                     <div style={{
@@ -484,14 +494,16 @@ const HomePage = () => {
                     value={emailTwo}
                     onChange={(e)=>{setEmailTwo(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"15px"
                     }}
                      id="outlined-basic" label="Email" variant="outlined" />
                     <TextField
                     value={passwordTwo}
                     onChange={(e)=>{setPasswordTwo(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"15px"
                     }}
                      id="outlined-basic" label="Password" variant="outlined" />
                       <Button
@@ -524,14 +536,17 @@ const HomePage = () => {
         }}>
             <Grid container>
                 <Grid lg="6">
-                    <Typography variant="h5">
+                    <Typography variant="h3">
                     Join Arc to get access to
                     </Typography>
+                    <Typography variant="h6">
                     <ul>
                         <li>No job applications. Speak directly to hiring managers.</li>
                         <li>Receive multiple offers from companies in 2 weeks.</li>
                         <li>Work and earn your way.</li>
                     </ul>
+                    </Typography>
+                    
                 </Grid>
                 <Grid lg="6">
                     <div style={{
@@ -547,21 +562,24 @@ const HomePage = () => {
                      value={nameOne}
                      onChange={(e)=>{setNameOne(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"8px"
                     }}
                      id="outlined-basic" label="Name" variant="outlined" />
                     <TextField
                     value={emailOne}
                     onChange={(e)=>{setEmailOne(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"8px"
                     }}
                      id="outlined-basic" label="Email" variant="outlined" />
                     <TextField
                     value={passwordOne}
                      onChange={(e)=>{setPasswordOne(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"8px"
                     }}
                      id="outlined-basic" label="Password" variant="outlined" />
                       <Button
@@ -595,14 +613,17 @@ const HomePage = () => {
         }}>
             <Grid container>
                 <Grid lg="6">
-                    <Typography variant="h5">
+                    <Typography variant="h3">
                     Join Arc to get access to
                     </Typography>
+                    <Typography variant="h6">
                     <ul>
                         <li>No job applications. Speak directly to hiring managers.</li>
                         <li>Receive multiple offers from companies in 2 weeks.</li>
                         <li>Work and earn your way.</li>
                     </ul>
+                    </Typography>
+                    
                 </Grid>
                 <Grid lg="6">
                     <div style={{
@@ -616,20 +637,23 @@ const HomePage = () => {
                     }} />
                      <TextField
                      onChange={(e)=>{setNameOne(e.target.value)}}
-                    style={{
-                      width:"100%"
+                     style={{
+                      width:"100%",
+                      margin:"8px"
                     }}
                      id="outlined-basic" label="Name" variant="outlined" />
                     <TextField
                     onChange={(e)=>{setEmailOne(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"8px"
                     }}
                      id="outlined-basic" label=" Your Company Email" variant="outlined" />
                     <TextField
                     onChange={(e)=>{setPasswordOne(e.target.value)}}
                     style={{
-                      width:"100%"
+                      width:"100%",
+                      margin:"8px"
                     }}
                      id="outlined-basic" label="Password" variant="outlined" />
                       <Button
