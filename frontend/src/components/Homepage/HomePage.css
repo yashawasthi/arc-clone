@@ -2,7 +2,7 @@
     background-color:rgb(221, 251, 251)
 }
 .first{
-    background-image: url("/Users/yashawasthi/Desktop/task-one/frontend/public/electro.jpg");
+    background-image: url("https://images.unsplash.com/photo-1506443432602-ac2fcd6f54e0?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470");
     background-attachment:scroll;
     background-position: center;
     height: 700px;
