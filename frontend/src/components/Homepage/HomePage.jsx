@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "./HomePage.css"
-import {Button, Grid, Menu, MenuList, Paper, Typography} from "@mui/material"
+import {Avatar, Button, Grid, Menu, MenuList, Paper, TextField, Typography} from "@mui/material"
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import AccordianHold from '../accordianhold/AccordianHold';
@@ -32,16 +32,105 @@ const HomePage = () => {
 
 
 
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-      setOpen(true);
+  const [openSignUp, setOpenSignUp] = useState(false);
+  const handleClickOpenSignUp = () => {
+      setOpenSignUp(true);
     };
   
-    const handleClose = (value) => {
-      setOpen(false);
+    const handleCloseSignUp = (value) => {
+      setOpenSignUp(false);
     };
 
+    const [openLogIn, setOpenLogIn] =useState(false);
+    const handleClickOpenLogIn = () => {
+        setOpenLogIn(true);
+      };
+    
+      const handleCloseLogIn = (value) => {
+        setOpenLogIn(false);
+      };
+  
+      const [isDeveloper, setIsDeveloper] =useState(false);
+      const handleClickSetIsDeveloper = () => {
+        setOpenSignUp(false);
+        setIsDeveloper(true);
+        };
+      
+        const handleCloseSetIsDeveloper = (value) => {
+          setOpenSignUp(false);
+          setIsDeveloper(false);
+        };
 
+
+
+
+      const [isCompany, setIsCompany] =useState(false);
+      const handleClickSetIsCompany = () => {
+        setIsCompany(true);
+        };
+      
+        const handleCloseSetIsCompany = (value) => {
+          setOpenSignUp(false);
+          setIsCompany(false);
+  
+        };
+/////////////////////////////////////////////SIGNUP///////////////////////////////////////////////////////////
+        const [nameOne,setNameOne]=useState("");
+        const [emailOne,setEmailOne]=useState("");
+        const [passwordOne,setPasswordOne]=useState("");
+
+
+        async function registerUser(event) {
+          event.preventDefault()
+      
+          const response = await fetch('http://localhost:5000/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              nameOne,
+              emailOne,
+              passwordOne,
+            }),
+          })
+              console.log(response);
+              setOpenSignUp(false);
+              setIsCompany(false);
+              setIsDeveloper(false);
+          }
+
+//////////////////////////////////////////////LOGIN///////////////////////////////////////////////////////////
+        const [emailTwo,setEmailTwo]=useState("");
+        const [passwordTwo,setPasswordTwo]=useState("");
+        const [userName,setUserName]=useState("");
+
+        const [userLoggedIn,setUserLoggedIn]=useState(false);
+        
+        async function loginUser(event) {
+          event.preventDefault()
+      
+          const response = await fetch('http://localhost:5000/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              emailTwo,
+              passwordTwo,
+            }),
+          })
+      
+          const data = await response.json()
+      
+          if (data.user) {
+            setOpenLogIn(false)
+            setUserLoggedIn(true);
+            setUserName(data.name);
+          } else {
+            alert('Please check your username and password')
+          }
+        }
   return (
     <div className='home-page'>
 
@@ -121,7 +210,14 @@ const HomePage = () => {
         color:"white"
     }}
       >For companies<ArrowDropDownIcon /></Button></div>
-        <div className='login'><Button
+
+
+      {userLoggedIn?<div>
+        <Avatar style={{position:"fixed",top:"20px",right:"15px"}}
+          alt="Remy Sharp">{userName.charAt(0)}</Avatar>
+      </div>:<div>
+      <div className='login'><Button
+        onClick={handleClickOpenLogIn}
         style={{
           borderRadius: 5,
           border: "white bold 1px",
@@ -134,7 +230,7 @@ const HomePage = () => {
 
         <div className='signup'><Button
         aria-controls='signup'
-        onClick={handleClickOpen}
+        onClick={handleClickOpenSignUp}
         style={{
           borderRadius: 5,
           border: "white bold 1px",
@@ -143,6 +239,8 @@ const HomePage = () => {
           fontSize: "15px",
           color:"white"
       }}>Sign Up</Button></div>
+        </div>}
+
     </div>
 
 
@@ -293,7 +391,7 @@ const HomePage = () => {
 
 
     </div>
-        {open?
+        {openSignUp?
            <div className='appearing-item-a' id="signup">
              <div className="main-apearing-a">
         <Paper style={{
@@ -313,7 +411,7 @@ const HomePage = () => {
                     <div style={{
                       textAlign:"center"
                     }}>
-                    <CloseIcon onClick={handleClose} style={{
+                    <CloseIcon onClick={handleCloseSignUp} style={{
                       position:"relative",
                       top:"-75px",
                       left:"62%",
@@ -324,6 +422,7 @@ const HomePage = () => {
                     </Typography>
                     <br></br>
                     <Button variant="outlined"
+                    onClick={handleClickSetIsDeveloper}
                     style={{
                       padding:"20px",
                         display:"inline"
@@ -335,6 +434,7 @@ const HomePage = () => {
 
 
                         <Button variant="outlined"
+                        onClick={handleClickSetIsCompany}
                         style={{
                           padding:"20px",
                             display:"inline",
@@ -342,7 +442,60 @@ const HomePage = () => {
                         I am a company
                         <Typography variant="subtitle2" >hiring developers</Typography>
                         </Button>
+
+                    </div>
+
+                </Grid>
+            </Grid>
+        </Paper>
+        </div>
+        </div>
+        :null}
+
+
+{openLogIn?
+           <div className='appearing-item-a' id="signup">
+             <div className="main-apearing-a">
+        <Paper style={{
+            padding:"100px"
+        }}>
+            <Grid container>
+                <Grid lg="6">
+                    <Typography variant="h5">
+                    Join Arc to get access to
+                    </Typography>
+                    <ul>
+                        <li>No job applications. Speak directly to hiring managers.</li>
+                        <li>Receive multiple offers from companies in 2 weeks.</li>
+                        <li>Work and earn your way.</li>
+                    </ul>
+                </Grid>
+                <Grid lg="6">
+                    <div style={{
+                      textAlign:"center"
+                    }}>
+                    <CloseIcon onClick={handleCloseLogIn} style={{
+                      position:"relative",
+                      top:"-75px",
+                      left:"62%",
+                      color:"black"
+                    }} />
+                    <TextField
+                    value={emailTwo}
+                    onChange={(e)=>{setEmailTwo(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Email" variant="outlined" />
+                    <TextField
+                    value={passwordTwo}
+                    onChange={(e)=>{setPasswordTwo(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Password" variant="outlined" />
                       <Button
+                      onClick={loginUser}
                       style={{
                         backgroundColor:"blue",
                         padding:"10px",
@@ -351,7 +504,7 @@ const HomePage = () => {
                         marginTop:"9px"
                       }}
                       >
-                        SignUp with Email
+                        Login
                       </Button>
 
                     </div>
@@ -363,6 +516,143 @@ const HomePage = () => {
         </div>
         :null}
 
+{isDeveloper?
+           <div className='appearing-item-a' id="signup">
+             <div className="main-apearing-a">
+        <Paper style={{
+            padding:"100px"
+        }}>
+            <Grid container>
+                <Grid lg="6">
+                    <Typography variant="h5">
+                    Join Arc to get access to
+                    </Typography>
+                    <ul>
+                        <li>No job applications. Speak directly to hiring managers.</li>
+                        <li>Receive multiple offers from companies in 2 weeks.</li>
+                        <li>Work and earn your way.</li>
+                    </ul>
+                </Grid>
+                <Grid lg="6">
+                    <div style={{
+                      textAlign:"center"
+                    }}>
+                    <CloseIcon onClick={handleCloseSetIsDeveloper} style={{
+                      position:"relative",
+                      top:"-75px",
+                      left:"62%",
+                      color:"black"
+                    }} />
+                     <TextField
+                     value={nameOne}
+                     onChange={(e)=>{setNameOne(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Name" variant="outlined" />
+                    <TextField
+                    value={emailOne}
+                    onChange={(e)=>{setEmailOne(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Email" variant="outlined" />
+                    <TextField
+                    value={passwordOne}
+                     onChange={(e)=>{setPasswordOne(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Password" variant="outlined" />
+                      <Button
+                      onClick={registerUser}
+                      style={{
+                        backgroundColor:"blue",
+                        padding:"10px",
+                        width:"80%",
+                        color:"white",
+                        marginTop:"9px"
+                      }}
+                      >
+                        Signup
+                      </Button>
+
+                    </div>
+
+                </Grid>
+            </Grid>
+        </Paper>
+        </div>
+        </div>
+        :null}
+
+
+{isCompany?
+           <div className='appearing-item-a' id="signup">
+             <div className="main-apearing-a">
+        <Paper style={{
+            padding:"100px"
+        }}>
+            <Grid container>
+                <Grid lg="6">
+                    <Typography variant="h5">
+                    Join Arc to get access to
+                    </Typography>
+                    <ul>
+                        <li>No job applications. Speak directly to hiring managers.</li>
+                        <li>Receive multiple offers from companies in 2 weeks.</li>
+                        <li>Work and earn your way.</li>
+                    </ul>
+                </Grid>
+                <Grid lg="6">
+                    <div style={{
+                      textAlign:"center"
+                    }}>
+                    <CloseIcon onClick={handleCloseSetIsCompany} style={{
+                      position:"relative",
+                      top:"-75px",
+                      left:"62%",
+                      color:"black"
+                    }} />
+                     <TextField
+                     onChange={(e)=>{setNameOne(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Name" variant="outlined" />
+                    <TextField
+                    onChange={(e)=>{setEmailOne(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label=" Your Company Email" variant="outlined" />
+                    <TextField
+                    onChange={(e)=>{setPasswordOne(e.target.value)}}
+                    style={{
+                      width:"100%"
+                    }}
+                     id="outlined-basic" label="Password" variant="outlined" />
+                      <Button
+                      onClick={registerUser}
+                      style={{
+                        backgroundColor:"blue",
+                        padding:"10px",
+                        width:"80%",
+                        color:"white",
+                        marginTop:"9px"
+                      }}
+                      >
+                        Signup
+                      </Button>
+
+                    </div>
+
+                </Grid>
+            </Grid>
+        </Paper>
+        </div>
+        </div>
+        :null}
     <AccordianHold />
     <Footer />
     </div>
